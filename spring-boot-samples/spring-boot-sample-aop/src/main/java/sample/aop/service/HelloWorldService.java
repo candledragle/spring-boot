@@ -23,10 +23,11 @@ import org.springframework.stereotype.Component;
 public class HelloWorldService {
 
 	@Value("${name:World}")
-	private String name;
+	private static String name;
 
-	public String getHelloMessage() {
-		return "Hello " + this.name;
+	public static String getHelloMessage(byte[] a) {
+		System.out.println("xxxxxxxxxxxx");
+		return "Hello " + name;
 	}
 
 }

@@ -16,12 +16,19 @@
 
 package sample.aop;
 
+import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import sample.aop.service.HelloWorldService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import sample.aop.service.Test;
+import sample.aop.test.CglibProxy;
+import sample.aop.test.SayHello;
+
+import javax.annotation.Resource;
 
 @SpringBootApplication
 public class SampleAopApplication implements CommandLineRunner {
@@ -31,9 +38,16 @@ public class SampleAopApplication implements CommandLineRunner {
 	@Autowired
 	private HelloWorldService helloWorldService;
 
+	@Resource
+	Test test;
+
 	@Override
 	public void run(String... args) {
-		System.out.println(this.helloWorldService.getHelloMessage());
+		System.out.println(this.helloWorldService.getHelloMessage(null));
+//		test = new Test();
+		test.sayHello();
+
+
 	}
 
 	public static void main(String[] args) {

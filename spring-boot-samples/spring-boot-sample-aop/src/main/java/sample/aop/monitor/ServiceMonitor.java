@@ -17,18 +17,50 @@
 package sample.aop.monitor;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class ServiceMonitor {
 
-	@AfterReturning("execution(* sample..*Service.*(..))")
+	/*@AfterReturning("execution(* sample..*Service.*(..))")
 	public void logServiceAccess(JoinPoint joinPoint) {
 		System.out.println("Completed: " + joinPoint);
+	}*/
+
+	/*@Pointcut("execution(public void sample.aop.service.Test.sayHello())")
+	public void logServiceAccess() {
+		System.out.println("Pointcut: " );
 	}
+
+	@Before("logServiceAccess()")
+	public void doBefore(JoinPoint joinPoint) {
+		System.out.println(" I,m from TestAop doBefore *******************************");
+	}
+
+	@AfterReturning(returning = "ret", pointcut = "logServiceAccess()")
+	public void doAfterReturning(Object ret) {
+		System.out.println(" I,m from TestAop doAfterReturning *******************************");
+	}*/
+
+	@Around("@annotation(sample.aop.annotation.RequestMonitor)")
+	public Object monitor(ProceedingJoinPoint joinPoint) {
+
+		try {
+			System.out.println("************ before **************");
+			Object result = joinPoint.proceed();
+			System.out.println("************ after ***************");
+			return result;
+		} catch (Throwable throwable) {
+			throwable.printStackTrace();
+		}
+		return null;
+	}
+
+
 
 }

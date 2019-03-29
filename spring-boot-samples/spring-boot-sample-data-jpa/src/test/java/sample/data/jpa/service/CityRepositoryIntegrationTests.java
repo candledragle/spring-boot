@@ -45,4 +45,14 @@ public class CityRepositoryIntegrationTests {
 		assertThat(cities.getTotalElements()).isGreaterThan(20L);
 	}
 
+	@Autowired
+	AppTaskRepository appTaskRepository;
+
+	@Test
+	public void test(){
+		long count = appTaskRepository.count();
+		System.out.println(count);
+
+	}
+
 }
