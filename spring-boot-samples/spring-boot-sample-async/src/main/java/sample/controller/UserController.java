@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sample.async.AsyncTask;
+import sample.bean.TestBean;
 import sample.domain.User;
 
 import javax.annotation.Resource;
@@ -18,6 +19,16 @@ public class UserController {
 
     @Resource
     AsyncTask asyncTask;
+
+    @Resource
+    TestBean testBean;
+
+    @RequestMapping("testbean")
+    public String testBean(){
+        return testBean.sayHello();
+    }
+
+
 
     @RequestMapping("find")
     public User findUser(int id,String name){
