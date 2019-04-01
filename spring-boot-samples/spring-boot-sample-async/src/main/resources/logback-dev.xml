@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoder 默认配置为PatternLayoutEncoder -->
+        <encoder charset="UTF-8">
+            <pattern>[%yellow(%d{MM-dd HH:mm:ss.SSS})] [%highlight(%-5level)] [%blue(%-16.16X{Trace})] [%green(%-42.42logger{42}:%-3.3L)] : %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ROOT" level="debug" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="org.hibernate" level="error" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <logger name="org.springframework" level="error" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="org.apache" level="error" additivity="false">
+        <appender-ref ref="console"/>
+    </logger>
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
