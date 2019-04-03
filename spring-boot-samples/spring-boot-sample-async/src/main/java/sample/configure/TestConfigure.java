@@ -10,7 +10,7 @@ public class TestConfigure {
 
 
 	@Bean
-	@Scope("prototype")
+	@Scope("singleton")
 	public TestBean testBean(){
 		return new TestBean();
 	}

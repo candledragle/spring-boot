@@ -29,8 +29,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 
 @SpringBootApplication
-@Slf4j
-public class SampleJpaApplication implements CommandLineRunner {
+public class SampleJpaApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(SampleJpaApplication.class);
 
@@ -38,7 +37,7 @@ public class SampleJpaApplication implements CommandLineRunner {
 		SpringApplication.run(SampleJpaApplication.class, args);
 	}
 
-	@Autowired
+	/*@Autowired
 	private DataSource dataSource;
 
 	@Override
@@ -49,5 +48,5 @@ public class SampleJpaApplication implements CommandLineRunner {
 		Connection connection = dataSource.getConnection();
 		log.info(connection.toString());
 		connection.close();
-	}
+	}*/
 }

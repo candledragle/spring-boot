@@ -22,4 +22,9 @@ class TestConfigureTest {
 		String s = testBean.sayHello();
 		loger.info(s);
 	}
+
+	@Test
+	void springAware(){
+
+	}
 }
