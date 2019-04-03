@@ -16,14 +16,38 @@
 
 package sample.jpa;
 
+
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+
 @SpringBootApplication
-public class SampleJpaApplication {
+@Slf4j
+public class SampleJpaApplication implements CommandLineRunner {
+
+	private static final Logger logger = LoggerFactory.getLogger(SampleJpaApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(SampleJpaApplication.class, args);
 	}
 
+	@Autowired
+	private DataSource dataSource;
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		logger.info("hello world!");
+		log.info(dataSource.toString());
+		Connection connection = dataSource.getConnection();
+		log.info(connection.toString());
+		connection.close();
+	}
 }
