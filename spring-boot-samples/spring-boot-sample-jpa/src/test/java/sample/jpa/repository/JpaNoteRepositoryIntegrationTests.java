@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 package sample.jpa.repository;
 
 import java.util.List;
@@ -28,11 +29,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+*/
 /**
  * Integration tests for {@link JpaNoteRepository}.
  *
  * @author Andy Wilkinson
- */
+ *//*
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
@@ -51,3 +54,4 @@ public class JpaNoteRepositoryIntegrationTests {
 	}
 
 }
+*/

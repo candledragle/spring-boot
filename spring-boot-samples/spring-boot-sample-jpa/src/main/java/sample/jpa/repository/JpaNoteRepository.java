@@ -24,6 +24,7 @@ import javax.persistence.PersistenceContext;
 import sample.jpa.domain.Note;
 
 import org.springframework.stereotype.Repository;
+import sample.jpa.domain.User;
 
 @Repository
 class JpaNoteRepository implements NoteRepository {
@@ -32,8 +33,8 @@ class JpaNoteRepository implements NoteRepository {
 	private EntityManager entityManager;
 
 	@Override
-	public List<Note> findAll() {
-		return this.entityManager.createQuery("SELECT n FROM Note n", Note.class)
+	public List<User> findAll() {
+		return this.entityManager.createQuery("SELECT n FROM User n", User.class)
 				.getResultList();
 	}
 

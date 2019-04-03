@@ -19,9 +19,10 @@ package sample.jpa.repository;
 import java.util.List;
 
 import sample.jpa.domain.Note;
+import sample.jpa.domain.User;
 
 public interface NoteRepository {
 
-	List<Note> findAll();
+	List<User> findAll();
 
 }

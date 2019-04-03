@@ -18,7 +18,10 @@ package sample.jpa.web;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import sample.jpa.domain.Note;
+import sample.jpa.domain.User;
+import sample.jpa.repository.IUserRepository;
 import sample.jpa.repository.NoteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,15 +34,28 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
 	@Autowired
-	private NoteRepository noteRepository;
+	private IUserRepository userRepository;
 
 	@GetMapping("/")
-	@Transactional(readOnly = true)
-	public ModelAndView index() {
-		List<Note> notes = this.noteRepository.findAll();
-		ModelAndView modelAndView = new ModelAndView("index");
-		modelAndView.addObject("notes", notes);
-		return modelAndView;
+	public String index() {
+
+		User user = new User();
+		user.setId(1);
+		user.setAge(19);
+		user.setName("张三");
+		user.setCity("郑州");
+		user.setAddress("金水区");
+		userRepository.save(user);
+
+		List<User> notes = userRepository.findAll();
+		/*ModelAndView modelAndView = new ModelAndView("index");
+		modelAndView.addObject("notes", notes);*/
+
+		System.out.println("********* "+notes.size() +" **********");
+
+		String json = JSON.toJSONString(notes);
+		System.out.println(json);
+		return json;
 	}
 
 }
