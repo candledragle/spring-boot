@@ -19,6 +19,7 @@ package sample.jpa.web;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.web.bind.annotation.*;
 import sample.jpa.domain.Note;
 import sample.jpa.domain.User;
 import sample.jpa.repository.IUserRepository;
@@ -27,7 +28,6 @@ import sample.jpa.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -56,6 +56,35 @@ public class IndexController {
 		String json = JSON.toJSONString(notes);
 		System.out.println(json);
 		return json;
+	}
+
+	@GetMapping("/address")
+	@ResponseBody
+	public String getGeo(@RequestParam String ip){
+		System.out.println(ip);
+		/*User user = new User();
+		user.setId(1);
+		user.setAge(19);
+		user.setName("张三");
+		user.setCity("郑州");
+		user.setAddress("金水区");*/
+		return "郑州";
+	}
+
+	@PostMapping("/post")
+	@ResponseBody
+	public User testPost(@RequestHeader("User-Agent")String ua,@RequestBody String body,@RequestParam String test){
+
+		System.out.println("ua : "+ua);
+		System.out.println("test : "+test);
+		System.out.println("requestBody : "+body);
+		User user = new User();
+		user.setId(1);
+		user.setAge(19);
+		user.setName("张三");
+		user.setCity("郑州");
+		user.setAddress("金水区");
+		return user;
 	}
 
 }
